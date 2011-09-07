@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Dojoconf 2011 Demo</title>
+	<script type="text/javascript">
+		(function(global) {
+			
+			global.curl = {
+				baseUrl: 'js/',
+				paths: {
+					curl: 'curl/src/curl'
+		            // wire: './wire'
+				},
+				pluginPath: 'curl/plugin',
+				packages: [
+					{ name: 'dojo', path: 'dojo', lib: '.', main: './lib/main-browser' },
+					{ name: 'dijit', path: 'dijit', lib: '.', main: './lib/main' },
+					{ name: 'sizzle', path: 'wire/support/sizzle', main: 'sizzle' },
+					{ name: 'aop', path: 'wire/support/aop', main: 'aop' },
+					// { name: 'when', path: 'wire/support/when', main: 'when' },
+					{ name: 'wire', path: 'wire', lib: './wire', main: 'wire' }
+				]
+			};
+			
+		})(window);
+	</script>
+	
+	<script type="text/javascript" src="js/curl/src/curl.js"></script>
+	
+	<script type="text/javascript">
+		curl(['curl/dojo16Compat', 'wire!hc/spec/main'], function(compat, context) {
+			context.test.innerHTML = 'wired';
+		});
+	</script>
+</head>
+<body>
+	<div id="test"></div>
+</body>
+</html>
