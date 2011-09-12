@@ -2,9 +2,14 @@ define({
 	plugins: [
 		{ module: 'wire/debug' },
 		{ module: 'wire/dojo/dom' },
-		{ module: 'wire/dojo/dijit' },
 		{ module: 'wire/dojo/events' },
-		{ module: 'wire/dojo/store' }
+		{ module: 'wire/aop' }
 	],
-	test: { $ref: 'dom.query!#test', i: 0 }
+	controller: {
+		create: 'hc/controller/DemoController',
+		properties: {
+			_context: { $ref: 'wire!context' }
+		},
+		init: 'init'
+	}
 });

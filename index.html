@@ -7,6 +7,7 @@
 		(function(global) {
 			
 			global.curl = {
+//                debug: true,
 				baseUrl: 'js/',
 				paths: {
 					curl: 'curl/src/curl'
@@ -18,7 +19,7 @@
 					{ name: 'dijit', path: 'dijit', lib: '.', main: './lib/main' },
 					{ name: 'sizzle', path: 'wire/support/sizzle', main: 'sizzle' },
 					{ name: 'aop', path: 'wire/support/aop', main: 'aop' },
-					// { name: 'when', path: 'wire/support/when', main: 'when' },
+					{ name: 'when', path: 'wire/support/when', main: 'when' },
 					{ name: 'wire', path: 'wire', lib: './wire', main: 'wire' }
 				]
 			};
@@ -29,12 +30,20 @@
 	<script type="text/javascript" src="js/curl/src/curl.js"></script>
 	
 	<script type="text/javascript">
-		curl(['curl/dojo16Compat', 'wire!hc/spec/main'], function(compat, context) {
-			context.test.innerHTML = 'wired';
-		});
+		curl(['curl/dojo16Compat', 'wire!hc/spec/main']);
 	</script>
 </head>
 <body>
-	<div id="test"></div>
+<section>
+    <h1>Snappy Title Here</h1>
+
+    <form action="person" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name">
+
+        <label for="occupation">Job:</label>
+        <input type="text" name="occupation" id="occupation">
+    </form>
+</section>
 </body>
 </html>
