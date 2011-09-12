@@ -1,6 +1,6 @@
 define(['require', 'dojo', 'when', 'wire/dojo/dijit'], function(require, dojo, when, dijitPlugin) {
 
-	var dijitMap, tos, isArray, theme;
+	var dijitMap, tos, isArray, theme, factories, placeAtFacet, datastoreResolver, loadTheme;
 	dijitMap = {
 		textbox:  'dijit/form/TextBox',
 		select:   'dijit/form/FilteringSelect',
@@ -25,58 +25,52 @@ define(['require', 'dojo', 'when', 'wire/dojo/dijit'], function(require, dojo, w
 		}
 	}
 
-	var factories = {};
+	factories = {};
 
 	for (var factory in dijitMap) {
 		factories[factory] = createFactory(factory, dijitMap[factory]);
 	}
 
-	var loadTheme = function() {
+	loadTheme = function() {
 		loadTheme = function() {};
 		require(['css!' + 'dijit/themes/' + theme + '/' + theme + '.css']);
 		dojo.addClass(dojo.body(), theme);
 	};
 
-	var plugin = {
-		factories: factories,
-		facets: {
-			placeAt: {
-				initialize: function(resolver, proxy, wire) {
-					var dijit, nodeRef;
+	placeAtFacet = {
+		initialize: function(resolver, proxy, wire) {
+			var dijit, nodeRef;
 
-					dijit = proxy.target;
-					nodeRef = proxy.options;
+			dijit = proxy.target;
+			nodeRef = proxy.options;
 
-					if (dijit.placeAt) {
-						wire(nodeRef).then(
-							function(args) {
-								dijit.placeAt.apply(dijit, isArray(args) ? args : [args]);
-								resolver.resolve();
-							},
-							function(e) {
-								resolver.reject(e);
-							}
-						);
-					} else {
-						resolver.reject("Not a dijit: " + proxy.path);
+			if (dijit.placeAt) {
+				wire(nodeRef).then(
+					function(args) {
+						dijit.placeAt.apply(dijit, isArray(args) ? args : [args]);
+						resolver.resolve();
+					},
+					function(e) {
+						resolver.reject(e);
 					}
-				}
-			}
-		},
-		resolvers: {
-			datastore: function(resolver, name, refObj, wire) {
-				when.chain(wire({
-					create: {
-						module: 'dojo/data/ObjectStore',
-						args: { objectStore:
-							{
-								create: { module: 'dojo/store/JsonRest', args: { target: name } }
-							}
-						}
-					}
-				}), resolver);
+				);
+			} else {
+				resolver.reject("Not a dijit: " + proxy.path);
 			}
 		}
+	};
+
+	datastoreResolver = function(resolver, name, refObj, wire) {
+		when.chain(wire({
+			create: {
+				module: 'dojo/data/ObjectStore',
+				args: { objectStore:
+				{
+					create: { module: 'dojo/store/JsonRest', args: { target: name } }
+				}
+				}
+			}
+		}), resolver);
 	};
 
 	return {
@@ -85,10 +79,13 @@ define(['require', 'dojo', 'when', 'wire/dojo/dijit'], function(require, dojo, w
 
 			if(theme) loadTheme();
 
+			// Extend the existing dijit plugin
 			var dp = dijitPlugin.wire$plugin(ready, destroy, options);
-			dp.facets = plugin.facets;
-			dp.factories = plugin.factories;
-			dp.resolvers.datastore = plugin.resolvers.datastore;
+
+			dp.facets = dp.facets || {};
+			dp.facets.placeAt = placeAtFacet;
+			dp.factories = factories;
+			dp.resolvers.datastore = datastoreResolver;
 
 			return dp;
 		}
