@@ -6,7 +6,7 @@ define(['dojo'], function(dojo) {
 
 	DemoController.prototype = {
 		init: function() {
-			this._context.wire('hc/spec/demo');
+			this._wireChild('hc/spec/demo');
 		}
 	};
 

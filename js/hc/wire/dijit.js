@@ -1,4 +1,4 @@
-define(['require', 'dojo'], function(require, dojo) {
+define(['require', 'dojo', 'when', 'wire/dojo/dijit'], function(require, dojo, when, dijitPlugin) {
 
 	var dijitMap, tos, isArray, theme;
 	dijitMap = {
@@ -21,13 +21,7 @@ define(['require', 'dojo'], function(require, dojo) {
 				}
 			};
 
-			wire(toWire).then(
-				function(wired) {
-					resolver.resolve(wired);
-				},
-				function(e) {
-					resolver.reject(e);
-				});
+			when.chain(wire(toWire), resolver);
 		}
 	}
 
@@ -38,7 +32,6 @@ define(['require', 'dojo'], function(require, dojo) {
 	}
 
 	var loadTheme = function() {
-		console.log(theme);
 		loadTheme = function() {};
 		require(['css!' + 'dijit/themes/' + theme + '/' + theme + '.css']);
 		dojo.addClass(dojo.body(), theme);
@@ -69,6 +62,20 @@ define(['require', 'dojo'], function(require, dojo) {
 					}
 				}
 			}
+		},
+		resolvers: {
+			datastore: function(resolver, name, refObj, wire) {
+				when.chain(wire({
+					create: {
+						module: 'dojo/data/ObjectStore',
+						args: { objectStore:
+							{
+								create: { module: 'dojo/store/JsonRest', args: { target: name } }
+							}
+						}
+					}
+				}), resolver);
+			}
 		}
 	};
 
@@ -78,7 +85,12 @@ define(['require', 'dojo'], function(require, dojo) {
 
 			if(theme) loadTheme();
 
-			return plugin;
+			var dp = dijitPlugin.wire$plugin(ready, destroy, options);
+			dp.facets = plugin.facets;
+			dp.factories = plugin.factories;
+			dp.resolvers.datastore = plugin.resolvers.datastore;
+
+			return dp;
 		}
 	}
 });
