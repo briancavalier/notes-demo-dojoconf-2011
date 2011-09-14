@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en-US">
+<html lang="en-US" class="loading">
 <head>
 	<meta charset="UTF-8">
 	<title>Dojoconf 2011 Demo</title>
@@ -17,18 +17,28 @@
 				packages: [
 					{ name: 'dojo', path: 'dojo', lib: '.', main: './lib/main-browser' },
 					{ name: 'dijit', path: 'dijit', lib: '.', main: './lib/main' },
-					{ name: 'sizzle', path: 'wire/support/sizzle', main: 'sizzle' },
-					{ name: 'aop', path: 'wire/support/aop', main: 'aop' },
-					{ name: 'when', path: 'wire/support/when', main: 'when' },
+					{ name: 'aop', path: 'aop', main: 'aop' },
+					{ name: 'when', path: 'when', main: 'when' },
 					{ name: 'wire', path: 'wire', lib: './wire', main: 'wire' }
 				]
 			};
 			
 		})(window);
 	</script>
+
+    <style>
+        body {
+            transition: opacity 250ms ease;
+            -moz-transition: opacity 250ms ease;
+            -webkit-transition: opacity 250ms ease;
+        }
+        .loading body {
+            opacity: 0;
+        }
+    </style>
 	
 	<script type="text/javascript" src="js/curl/src/curl.js"></script>
-	
+
 	<script type="text/javascript">
 		curl(['curl/dojo16Compat', 'wire!hc/spec/main']);
 	</script>

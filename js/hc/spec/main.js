@@ -3,9 +3,9 @@ define({
 		{ module: 'wire/debug' }
 	],
 	controller: {
-		create: 'hc/controller/DemoController',
+		create: 'hc/controller/AppController',
 		properties: {
-			_wireChild: { $ref: 'wire!' }
+			_wireChild: { wire: { spec: 'hc/spec/demo', defer: true } }
 		},
 		init: 'init'
 	}
