@@ -3,57 +3,31 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Dojoconf 2011 Demo</title>
-	<script type="text/javascript">
-		(function(global) {
-			
-			global.curl = {
-//                debug: true,
-				baseUrl: 'js/',
-				paths: {
-					curl: 'curl/src/curl'
-		            // wire: './wire'
-				},
-				pluginPath: 'curl/plugin',
-				packages: [
-					{ name: 'dojo', path: 'dojo', lib: '.', main: './lib/main-browser' },
-					{ name: 'dijit', path: 'dijit', lib: '.', main: './lib/main' },
-					{ name: 'aop', path: 'aop', main: 'aop' },
-					{ name: 'when', path: 'when', main: 'when' },
-					{ name: 'wire', path: 'wire', lib: './wire', main: 'wire' }
-				]
-			};
-			
-		})(window);
-	</script>
 
-    <style>
-        body {
-            transition: opacity 250ms ease;
-            -moz-transition: opacity 250ms ease;
-            -webkit-transition: opacity 250ms ease;
-        }
-        .loading body {
-            opacity: 0;
-        }
-    </style>
-	
-	<script type="text/javascript" src="js/curl/src/curl.js"></script>
+    <script src="js/config.js"></script>
+	<script src="js/curl/src/curl.js"></script>
 
-	<script type="text/javascript">
+	<script>
 		curl(['curl/dojo16Compat', 'wire!hc/spec/main']);
 	</script>
+
+    <link href="css/screen.css" rel="stylesheet" media="screen">
+
 </head>
 <body>
-<section>
-    <h1>Snappy Title Here</h1>
 
-    <form action="person" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" name="name" id="name">
+    <header id="main-header">
+        <h1>wire notes</h1>
+        <a href="prefs.html" id="show-prefs">Preferences</a>
+    </header>
 
-        <label for="occupation">Job:</label>
-        <input type="text" name="occupation" id="occupation">
-    </form>
-</section>
+    <section id="main">
+        <section id="note-list" class="container"></section>
+        <section id="note" class="container"></section>
+    </section>
+
+    <div id="dialog-container" class="dialog"></div>
+
+    <footer></footer>
 </body>
 </html>

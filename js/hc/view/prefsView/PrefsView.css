@@ -1,0 +1,28 @@
+
+/* -----------------------------------------------------
+ * Copyright (c) 2011, Your Company, Inc. All rights reserved.
+ * =PrefsView
+ */
+.prefs-view fieldset {
+    padding: 1em 2em;
+}
+
+.prefs-view label {
+    display: block;
+    margin:  1em;
+}
+
+.prefs-view label span {
+    display: block;
+    margin-right: 1em;
+}
+
+.prefs-view footer {
+    padding: .5em 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #ccc;
+    background: #B5BCC7;
+    text-align: right;
+}

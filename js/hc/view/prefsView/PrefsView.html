@@ -1,0 +1,25 @@
+<div class="prefs-view">
+    <form action="" dojoattachpoint="formNode" dojoattachevent="submit:_handleSubmit">
+        <fieldset>
+            <h1>${strings.title}</h1>
+
+            <label><span>${strings.nameLabel}</span>
+                <input dojoattachpoint="nameInput,focusNode" type="text" dojotype="dijit.form.TextBox" name="name"/>
+            </label>
+
+            <label><span>${strings.emailLabel}</span>
+                <input dojoattachpoint="emailInput" type="text" dojotype="dijit.form.TextBox" name="email"/>
+            </label>
+
+            <label><span>${strings.jobLabel}</span>
+                <input dojoattachpoint="jobInput" type="text" dojotype="dijit.form.ComboBox" name="job"/>
+            </label>
+        </fieldset>
+        
+        <footer>
+            <div class="button-set">
+                <button class="primary" type="submit" dojotype="dijit.form.Button">Done</button>
+            </div>
+        </footer>
+    </form>
+</div>

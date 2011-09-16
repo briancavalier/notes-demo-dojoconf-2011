@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<title>PrefsController Test Harness</title>
+
+<!-- needed for unit tests -->
+<script src="../../../util/doh/runner.js"></script>
+
+<script type="text/javascript">
+
+function init() {
+	require(
+		[
+			'js/hc/controller/PrefsController'
+		],
+		function (PrefsController) {
+
+			if(window.location.hash === '#run') {
+				doh.register('js/hc/controller/PrefsController', [
+					function(doh) {
+						// Implement a unit test here!!!
+						doh.assertTrue(false);
+					}
+				]);
+
+				doh.run();
+			}
+
+		}
+	);
+}
+
+</script>
+
+<!-- this goes after init() to make sure it's declared before the boot-loader -->
+<script type="text/javascript" src="../../util/harness-boot-loader.js"></script>
+
+<link href="../../../dijit/themes/dijit.css" rel="stylesheet" type="text/css"/>
+<link href="../../../cujo/common/headline-c.css" rel="stylesheet" type="text/css"/>
+<link href="../../../li/stylesheets/screen.css" rel="stylesheet" type="text/css" />
+<link href="../../../li/stylesheets/test-harness.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+
+	<!-- the root template node -->
+	<section class="cujo-root cujo-stretch">
+
+		<!-- optional header section -->
+		<header class="cujo-block cujo-header li-header">
+		</header>
+
+		<section class="cujo-main li-main-area">
+
+			<!-- put your html here -->
+			<div id="run">
+	<p class="unit-test-warning">This is a Javascript-only unit test, it has no visual tests.  Reload the page with the <a href="?lets#run">hash #run</a> to run the unit tests.</p>
+	<p class="unit-test-running">Running Javascript unit tests</p>
+</div>
+		</section>
+
+		<!-- optional footer section -->
+		<footer class="cujo-block cujo-footer">
+		</footer>
+
+	</section>
+
+</body>
+</html>

@@ -1,18 +1,31 @@
-define(['dojo'], function(dojo) {
+define(['dojo', 'when'], function(dojo, when) {
+
+	function noop() {}
 
 	function AppController() {
 	}
 
 	AppController.prototype = {
-		init: function() {
+
+		showPrefs: function(e) {
+			e.preventDefault();
+			
 			var self = this;
-			this._wireChild().then(function(child) {
-				self.destroy = function() {
+
+			this._showPrefs().then(function(child) {
+
+				self.showNotes = function() {
 					child.destroy();
 				};
 			});
 		},
-		destroy: function() {}
+
+		showNotes: noop,
+
+		_showPrefs: noop,
+
+		destroy: noop
+
 	};
 
 	return AppController;
