@@ -23,9 +23,9 @@ function(JsonRest, makeObservable, when) {
 				makeObservable(store);
 			}
 
-			console.log(joinpoint.args);
-
 			var object = joinpoint.args[0];
+
+			console.log("SAVED " + joinpoint.target.target, object);
 
 			joinpoint.target.notify(object, store.getIdentity(object));
 

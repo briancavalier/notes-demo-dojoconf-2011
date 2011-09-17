@@ -2,5 +2,13 @@
 	{
 		"id": 1,
 		"name": "Astronaut"
-	}
+	},
+    {
+        "id": 2,
+        "name": "Javascripter"
+    },
+    {
+        "id": 3,
+        "name": "Secret Agent"
+    }
 ]

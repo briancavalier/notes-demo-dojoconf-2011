@@ -16,8 +16,17 @@ define([], function() {
 		_noteListView: null, // injected
 		_notesStore:   null, // injected
 
+		_newNote: { id: 999, text: '' },
+
 		init: function() {
 			this._getNotes();
+			this._createNewNote();
+		},
+
+		_createNewNote: function() {
+			this._newNote.id++;
+			var newNote = dojo.clone(this._newNote);
+			this._noteView.set('note', newNote);
 		},
 
 		_getNotes: function() {
@@ -41,7 +50,7 @@ define([], function() {
 		},
 
 		_saveNote: function(note) {
-			this._notesStore.put(note);
+			this._notesStore[note.id ? "put" : "add"](note);
 		},
 
 		_handleNoteSelected: function(note) {

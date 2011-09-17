@@ -7,9 +7,7 @@ define(['dojo', 'when'], function(dojo, when) {
 
 	AppController.prototype = {
 
-		showPrefs: function(e) {
-			e.preventDefault();
-			
+		showPrefs: function() {
 			var self = this;
 
 			this._showPrefs().then(function(child) {

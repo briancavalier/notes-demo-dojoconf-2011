@@ -8,6 +8,7 @@ define(
 [
 	'dojo',
 	'dijit',
+	'when',
 	'text!./prefsView/PrefsView.html',
 	'i18n!./prefsView/nls/PrefsView',
 	'dijit/_Widget',
@@ -17,7 +18,7 @@ define(
 	'dijit/form/Button',
 	'css!./prefsView/PrefsView.css'
 ],
-function(dojo, dijit, template, strings, Widget, Templated) {
+function(dojo, dijit, when, template, strings, Widget, Templated) {
 
 	// package emulation
 	return dojo.declare('hc.view.PrefsView', [Widget, Templated], {
@@ -29,7 +30,7 @@ function(dojo, dijit, template, strings, Widget, Templated) {
 		widgetsInTemplate: true,
 
 		attributeMap: dojo.delegate(Widget.prototype.attributeMap, {
-			jobsModel: { node: 'jobInput', attribute: 'store' }
+			jobsStore: { node: 'jobInput', attribute: 'store' }
 		}),
 
 		onSave: function(data) {
@@ -40,6 +41,15 @@ function(dojo, dijit, template, strings, Widget, Templated) {
 
 			// TODO: Send data along with event
 			this.onSave(dojo.formToObject(this.formNode));
+		},
+
+		_setValueAttr: function(prefs) {
+			var self = this;
+			when(prefs, function(prefs) {
+				self.nameInput.set('value', prefs.name);
+				self.emailInput.set('value', prefs.email);
+				self.jobInput.set('value', prefs.job);
+			});
 		},
 
 		focus: function() {

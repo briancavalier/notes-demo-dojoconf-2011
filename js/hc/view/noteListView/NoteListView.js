@@ -56,7 +56,7 @@ function(dojo, template, strings, Widget, Templated) {
 				var id = note.attr('data-note-id');
 				dojo.query('.selected', this.containerNode).removeClass('selected');
 				note.addClass('selected');
-				this.onChange(this._notesById[id[0]]);
+				this.onChange(this._notesById[id[0]].note);
 			}
 		},
 
@@ -91,16 +91,26 @@ function(dojo, template, strings, Widget, Templated) {
 		},
 
 		_insertNote: function(note, index) {
-			var position = index < 0 ? 'last' : index;
-			var text = note.text ? note.text.slice(0, Math.min(note.text.length, 64)) : strings.emptyNoteText;
-			this._notesById[note.id] = note;
+			var position, text, node;
+			position = index < 0 ? 'last' : index;
+			text = note.text ? note.text.slice(0, Math.min(note.text.length, 64)) : strings.emptyNoteText;
+			node = dojo.place(dojo.replace(this.noteTemplate, { id: note.id, text: text }), this.containerNode, position);
 
-			return dojo.place(dojo.replace(this.noteTemplate, { id: note.id, text: text }), this.containerNode, position);
+			var inserted = {
+				note: note,
+				node: node
+			};
+			
+			this._notesById[note.id] = inserted;
+			return inserted;
 		},
 
 		_removeNote: function(note, index) {
-			var removed = dojo.query('.note-item', this.containerNode).at(0).orphan();
-			delete this._notesById[note.id];
+			var removed = this._notesById[note.id];
+			if(removed.node && removed.node.parentNode) {
+				removed.node.parentNode.removeChild(removed.node);
+				delete this._notesById[note.id];
+			}
 
 			return removed;
 		},
@@ -108,9 +118,9 @@ function(dojo, template, strings, Widget, Templated) {
 		_updateNote: function(note, index) {
 			var removed = this._removeNote(note, index);
 			var inserted = this._insertNote(note, index);
-			if(removed.length) {
-				if(dojo.hasClass(removed[0], 'selected')) {
-					dojo.addClass(inserted, 'selected');
+			if(removed) {
+				if(dojo.hasClass(removed.node, 'selected')) {
+					dojo.addClass(inserted.node, 'selected');
 				}
 			}
 		},

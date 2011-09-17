@@ -17,12 +17,11 @@ function() {
 	PrefsController.prototype = {
 
 		_prefsStore: null,  //injected
-		
-		_savePrefs: function(prefs) {
-			console.log(prefs);
 
+		_savePrefs: function(prefs) {
 			var self = this;
 			this._prefsStore.put(prefs).then(function() {
+				self._prefsView.set('value', prefs);
 				self.prefsSaved();
 			});
 		},

@@ -1,6 +1,6 @@
 define({
 	plugins: [
-		{ module: 'wire/debug' },
+//		{ module: 'wire/debug' },
 		{ module: 'wire/dom', classes: { init: 'prefs-loading', ready: 'prefs-ready'} },
 		{ module: 'wire/dojo/events' },
 		{ module: 'wire/dojo/store' },
@@ -10,12 +10,13 @@ define({
 			aspects: [ 'storeAdvice' ]
 		}
 	],
-	jobsModel: { $ref: 'datastore!js/data/jobs/index.json' },
+	jobsStore: { $ref: 'datastore!js/data/jobs/index.json' },
 	view: {
 		create: {
 			module: 'hc/view/prefsView/PrefsView',
 			args: {
-				jobsModel: { $ref: 'jobsModel' }
+				jobsStore: { $ref: 'jobsStore' },
+				value: { $ref: 'resource!js/data/prefs/', get: 1 }
 			}
 		},
 		placeAt: { $ref: 'dom!dialog-container' },
@@ -24,7 +25,8 @@ define({
 	controller: {
 		create: 'hc/controller/PrefsController',
 		properties: {
-			_prefsStore: { $ref: 'resource!js/data/prefs' }
+			_prefsStore: { $ref: 'resource!js/data/prefs' },
+			_prefsView:  { $ref: 'view' }
 		},
 		connect: {
 			view: {

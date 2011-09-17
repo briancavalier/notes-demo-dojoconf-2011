@@ -1,6 +1,6 @@
 define({
 	plugins: [
-		{ module: 'wire/debug' },
+//		{ module: 'wire/debug' },
 		{ module: 'wire/dom', classes: { init: 'loading', ready: 'notes-ready' } },
 		{ module: 'wire/dojo/events' },
 		{ module: 'wire/dojo/store' },
@@ -16,9 +16,15 @@ define({
 			_showPrefs: { wire: { spec: 'hc/spec/prefs', defer: true } }
 		},
 		connect: {
-			'dom!show-prefs': {
-				'click': 'showPrefs'
+			headerView: {
+				onPrefs:   'showPrefs'
 			}
+		}
+	},
+	headerView: {
+		create: {
+			module: 'hc/view/headerView/HeaderView',
+			args: [{}, { $ref: 'dom!main-header' }]
 		}
 	},
 	noteController: {
@@ -29,6 +35,9 @@ define({
 			_notesStore: { $ref: 'notesStore' }
 		},
 		connect: {
+			headerView: {
+				onNewNote: '_createNewNote'
+			},
 			noteView: {
 				onChange: '_handleNoteChanged'
 			},

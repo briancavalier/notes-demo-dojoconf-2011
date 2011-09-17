@@ -30,7 +30,6 @@ function(dojo, template, strings, Widget, Templated) {
 
 		postCreate: function() {
 			this.inherited(arguments);
-			this._note = {};
 		},
 
 		_onChange: function(e) {
