@@ -76,7 +76,7 @@ input, textarea, select {
     border-right: 1px solid #666;
     border-bottom: 1px solid #666;
     box-shadow: 1px 1px 20px #999;
-    margin-top: -75%;
+    margin-top: -1000px;
     -moz-transition: margin-top 500ms ease;
     -webkit-transition: margin-top 500ms ease;
     transform: translate3d(0,0,0);
