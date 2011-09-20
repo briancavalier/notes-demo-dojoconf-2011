@@ -3,7 +3,7 @@
 	url = git://github.com/unscriptable/curl.git
 [submodule "js/aop"]
 	path = js/aop
-	url = git@github.com:briancavalier/when.js.git
+	url = git@github.com:briancavalier/aop.js.git
 [submodule "js/when"]
 	path = js/when
 	url = git@github.com:briancavalier/when.js.git
