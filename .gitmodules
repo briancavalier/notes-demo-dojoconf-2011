@@ -10,3 +10,9 @@
 [submodule "js/wire"]
 	path = js/wire
 	url = git@github.com:briancavalier/wire.git
+[submodule "js/dojo"]
+	path = js/dojo
+	url = https://github.com/dojo/dojo.git
+[submodule "js/dijit"]
+	path = js/dijit
+	url = https://github.com/dojo/dijit.git
