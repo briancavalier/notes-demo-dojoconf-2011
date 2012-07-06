@@ -7,11 +7,11 @@
 define(
 [
 	'dojo',
-	'text!./noteListView/NoteListView.html',
-	'i18n!./noteListView/nls/NoteListView',
+	'text!./NoteListView.html',
+	'i18n!./nls/NoteListView',
 	'dijit/_Widget',
 	'dijit/_Templated',
-	'css!./noteListView/NoteListView.css',
+	'css!./NoteListView.css',
 	'dojo/NodeList-traverse'
 ],
 function(dojo, template, strings, Widget, Templated) {

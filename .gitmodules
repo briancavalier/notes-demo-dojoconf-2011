@@ -4,3 +4,15 @@
 [submodule "js/dijit"]
 	path = js/dijit
 	url = https://github.com/dojo/dijit.git
+[submodule "js/curl"]
+	path = js/curl
+	url = git://github.com/cujojs/curl.git
+[submodule "js/wire"]
+	path = js/wire
+	url = git://github.com/cujojs/wire.git
+[submodule "js/when"]
+	path = js/when
+	url = git://github.com/cujojs/when.git
+[submodule "js/aop"]
+	path = js/aop
+	url = git://github.com/cujojs/aop.git

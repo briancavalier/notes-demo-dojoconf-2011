@@ -4,7 +4,7 @@ define({
 	// An array just seems convenient
 	plugins: [
 		// debug firehose
-//		{ module: 'wire/debug' },
+		{ module: 'wire/debug' },
 		{ module: 'wire/dom', classes: { init: 'loading', ready: 'notes-ready' } },
 		// Use dojo.connect for event connections
 		{ module: 'wire/dojo/events' },

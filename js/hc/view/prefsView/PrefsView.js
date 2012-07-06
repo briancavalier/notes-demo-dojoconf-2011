@@ -9,14 +9,14 @@ define(
 	'dojo',
 	'dijit',
 	'when',
-	'text!./prefsView/PrefsView.html',
-	'i18n!./prefsView/nls/PrefsView',
+	'text!./PrefsView.html',
+	'i18n!./nls/PrefsView',
 	'dijit/_Widget',
 	'dijit/_Templated',
 	'dijit/form/TextBox',
 	'dijit/form/ComboBox',
 	'dijit/form/Button',
-	'css!./prefsView/PrefsView.css'
+	'css!./PrefsView.css'
 ],
 function(dojo, dijit, when, template, strings, Widget, Templated) {
 

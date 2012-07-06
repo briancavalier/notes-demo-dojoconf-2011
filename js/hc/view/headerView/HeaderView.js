@@ -7,11 +7,11 @@
 define(
 [
 	'dojo',
-	'text!./headerView/HeaderView.html',
-	'i18n!./headerView/nls/HeaderView',
+	'text!./HeaderView.html',
+	'i18n!./nls/HeaderView',
 	'dijit/_Widget',
 	'dijit/_Templated',
-	'css!./headerView/HeaderView.css'
+	'css!./HeaderView.css'
 ],
 function(dojo, template, strings, Widget, Templated) {
 

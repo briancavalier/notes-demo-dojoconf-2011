@@ -7,12 +7,12 @@
 define(
 [
 	'dojo',
-	'text!./noteView/NoteView.html',
-	'i18n!./noteView/nls/NoteView',
+	'text!./NoteView.html',
+	'i18n!./nls/NoteView',
 	'dijit/_Widget',
 	'dijit/_Templated',
 	'dijit/form/SimpleTextarea',
-	'css!./noteView/NoteView.css'
+	'css!./NoteView.css'
 ],
 function(dojo, template, strings, Widget, Templated) {
 
