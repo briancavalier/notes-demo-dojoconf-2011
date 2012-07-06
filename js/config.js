@@ -4,10 +4,9 @@
 //                debug: true,
 		baseUrl: 'js/',
 		paths: {
-			curl: 'curl/src/curl'
-            // wire: './wire'
+			curl: 'curl/src/curl',
+			i18n: './i18n'
 		},
-		pluginPath: 'curl/plugin',
 		packages: [
 			{ name: 'dojo', path: 'dojo', lib: '.', main: './lib/main-browser' },
 			{ name: 'dijit', path: 'dijit', lib: '.', main: './lib/main' },
